@@ -163,7 +163,6 @@ private:
     Messaging::ExchangeManager * mpExchangeMgr = nullptr;
     InteractionModelDelegate * mpDelegate      = nullptr;
     bool mInitialReport                        = false;
-    SessionHandle mSecureHandle;
 };
 } // namespace app
 } // namespace chip
