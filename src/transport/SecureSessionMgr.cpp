@@ -122,9 +122,11 @@ CHIP_ERROR SecureSessionMgr::PrepareMessage(SessionHandle session, PayloadHeader
         MessageCounter & counter = GetSendCounterForPacket(payloadHeader, *state);
         ReturnErrorOnFailure(SecureMessageCodec::Encode(state, payloadHeader, packetHeader, message, counter));
 
-        ChipLogProgress(Inet, "Build %s message %p to 0x" ChipLogFormatX64 " of type %d and protocolId %" PRIu32 " on exchange %d with MessageId %d.",
-                        "encrypted", &preparedMessage, ChipLogValueX64(state->GetPeerNodeId()), payloadHeader.GetMessageType(),
-                        payloadHeader.GetProtocolID().ToFullyQualifiedSpecForm(), payloadHeader.GetExchangeID(), packetHeader.GetMessageId());
+        ChipLogProgress(
+            Inet,
+            "Build %s message %p to 0x" ChipLogFormatX64 " of type %d and protocolId %" PRIu32 " on exchange %d with MessageId %d.",
+            "encrypted", &preparedMessage, ChipLogValueX64(state->GetPeerNodeId()), payloadHeader.GetMessageType(),
+            payloadHeader.GetProtocolID().ToFullyQualifiedSpecForm(), payloadHeader.GetExchangeID(), packetHeader.GetMessageId());
     }
     else
     {
@@ -136,9 +138,11 @@ CHIP_ERROR SecureSessionMgr::PrepareMessage(SessionHandle session, PayloadHeader
 
         packetHeader.SetMessageId(messageId);
 
-        ChipLogProgress(Inet, "Build %s message %p to 0x" ChipLogFormatX64 " of type %d and protocolId %" PRIu32 " on exchange %d with MessageId %d.",
-                        "plaintext", &preparedMessage, ChipLogValueX64(kUndefinedNodeId), payloadHeader.GetMessageType(),
-                        payloadHeader.GetProtocolID().ToFullyQualifiedSpecForm(), payloadHeader.GetExchangeID(), packetHeader.GetMessageId());
+        ChipLogProgress(
+            Inet,
+            "Build %s message %p to 0x" ChipLogFormatX64 " of type %d and protocolId %" PRIu32 " on exchange %d with MessageId %d.",
+            "plaintext", &preparedMessage, ChipLogValueX64(kUndefinedNodeId), payloadHeader.GetMessageType(),
+            payloadHeader.GetProtocolID().ToFullyQualifiedSpecForm(), payloadHeader.GetExchangeID(), packetHeader.GetMessageId());
     }
 
     ReturnErrorOnFailure(packetHeader.EncodeBeforeData(message));
